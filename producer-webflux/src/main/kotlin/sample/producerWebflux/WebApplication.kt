@@ -1,4 +1,4 @@
-package sample.producer
+package sample.producerWebflux
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

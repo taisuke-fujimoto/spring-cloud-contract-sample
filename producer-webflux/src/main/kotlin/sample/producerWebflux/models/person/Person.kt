@@ -1,4 +1,4 @@
-package sample.producer.models.person
+package sample.producerWebflux.models.person
 
 class Person(
     val id: Long,

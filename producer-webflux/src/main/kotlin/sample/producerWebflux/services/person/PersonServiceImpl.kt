@@ -1,7 +1,7 @@
-package sample.producer.services.person
+package sample.producerWebflux.services.person
 
 import org.springframework.stereotype.Service
-import sample.producer.models.person.Person
+import sample.producerWebflux.models.person.Person
 
 @Service
 class PersonServiceImpl : PersonService {

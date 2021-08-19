@@ -1,4 +1,4 @@
 include(
-    "producer",
+    "producer-webflux",
     "consumer"
 )

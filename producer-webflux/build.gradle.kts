@@ -32,7 +32,7 @@ contracts {
     setBaseClassMappings(
         // 正規表現の指定に Kotlin の """literal""" を使うと generateContractTests でエラー
         mapOf(
-            "sample[.]producer[.]controllers[.]person" to "sample.producer.controllers.person.IndexControllerBase"
+            "sample[.]producerWebflux[.]controllers[.]person" to "sample.producerWebflux.controllers.person.IndexControllerBase"
         )
     )
 }

@@ -1,9 +1,9 @@
-package sample.producer.controllers.person
+package sample.producerWebflux.controllers.person
 
 import io.restassured.module.webtestclient.RestAssuredWebTestClient
 import org.junit.jupiter.api.BeforeEach
-import sample.producer.models.person.Person
-import sample.producer.services.person.PersonService
+import sample.producerWebflux.models.person.Person
+import sample.producerWebflux.services.person.PersonService
 
 abstract class IndexControllerBase {
     @BeforeEach
