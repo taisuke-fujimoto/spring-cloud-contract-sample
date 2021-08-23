@@ -6,7 +6,12 @@ plugins {
 
     // apply(plugin = "") 形式だと有効にならなかった
     id("org.springframework.cloud.contract")
+
+    id("maven-publish")
 }
+
+group = "my.spring-cloud-contract-sample"
+version = "0.0.1-SNAPSHOT"
 
 dependencyManagement {
     imports {
@@ -17,7 +22,7 @@ dependencyManagement {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
 
-    // これに spring-boot-starter-test が含まれてる
+    // spring-boot-starter-test が含まれてる
     testImplementation("org.springframework.cloud:spring-cloud-starter-contract-verifier")
     testImplementation("org.springframework.cloud:spring-cloud-contract-spec-kotlin")
     testImplementation("io.rest-assured:spring-web-test-client")
@@ -40,5 +45,24 @@ contracts {
 tasks {
     contractTest {
         useJUnitPlatform()
+    }
+}
+
+// ローカルの maven リポジトリに発行するための設定
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            artifact(tasks.named("verifierStubsJar"))
+
+            // https://github.com/spring-gradle-plugins/dependency-management-plugin/issues/273
+            versionMapping {
+                usage("java-api") {
+                    fromResolutionOf("runtimeClasspath")
+                }
+                usage("java-runtime") {
+                    fromResolutionResult()
+                }
+            }
+        }
     }
 }
