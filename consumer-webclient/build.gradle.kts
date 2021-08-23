@@ -16,3 +16,9 @@ dependencies {
     // spring-boot-starter-test が含まれてる
     testImplementation("org.springframework.cloud:spring-cloud-starter-contract-stub-runner")
 }
+
+tasks {
+    test {
+        useJUnitPlatform()
+    }
+}
