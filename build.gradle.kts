@@ -42,6 +42,9 @@ subprojects {
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+
+        testImplementation("io.kotest:kotest-runner-junit5-jvm:$KOTEST_VERSION")
+        testImplementation("io.kotest:kotest-extensions-spring-jvm:$KOTEST_SPRING_VERSION")
     }
 
     tasks.withType<KotlinCompile>().configureEach {

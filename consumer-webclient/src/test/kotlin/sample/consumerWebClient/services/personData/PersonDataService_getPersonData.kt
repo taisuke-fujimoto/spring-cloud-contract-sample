@@ -1,9 +1,9 @@
+@file:Suppress("ClassName")
+
 package sample.consumerWebClient.services.personData
 
-import org.assertj.core.api.Assertions.assertThat
-import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.Test
-import org.springframework.beans.factory.annotation.Autowired
+import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.shouldBe
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner
 import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties
@@ -15,21 +15,17 @@ import sample.consumerWebClient.models.personData.PersonData
     ids = ["my.spring-cloud-contract-sample:producer-webflux:0.0.1-SNAPSHOT:stubs:8000"],
     stubsMode = StubRunnerProperties.StubsMode.LOCAL
 )
-class PersonDataServiceTest {
-    // kotest でないため、こんな書き方になる
-    // 素の junit5 は色々サポートされてない
-
-    @Autowired
-    private lateinit var personDataService: PersonDataService
-
-    @Test
-    fun getPersonData(): Unit = runBlocking {
+class PersonDataService_getPersonData(
+    personDataService: PersonDataService
+) : StringSpec({
+    "存在する key を渡すと成功する" {
+        val keyExists = 1L
         val expected = PersonData(
-            key = 1,
+            key = keyExists,
             fullName = "mock_name mock_surname"
         )
-        val actual = personDataService.getPersonData(1)
+        val actual = personDataService.getPersonData(keyExists)
 
-        assertThat(actual).usingRecursiveComparison().isEqualTo(expected)
+        actual shouldBe expected
     }
-}
+})
