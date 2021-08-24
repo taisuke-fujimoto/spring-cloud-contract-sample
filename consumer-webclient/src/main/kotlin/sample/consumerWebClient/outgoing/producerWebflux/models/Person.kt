@@ -1,4 +1,4 @@
-package sample.consumerWebClient.outgoing.models
+package sample.consumerWebClient.outgoing.producerWebflux.models
 
 import sample.consumerWebClient.models.personData.PersonData
 

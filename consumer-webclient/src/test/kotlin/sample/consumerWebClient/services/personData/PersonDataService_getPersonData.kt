@@ -11,7 +11,7 @@ import sample.consumerWebClient.models.personData.PersonData
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @AutoConfigureStubRunner(
-    // ポート番号の指定は必須っぽい
+    // ポート番号は必須
     ids = ["my.spring-cloud-contract-sample:producer-webflux:0.0.1-SNAPSHOT:stubs:8000"],
     stubsMode = StubRunnerProperties.StubsMode.LOCAL
 )

@@ -1,25 +1,13 @@
 package sample.consumerWebClient.services.personData
 
 import org.springframework.stereotype.Service
-import org.springframework.web.reactive.function.client.WebClient
-import org.springframework.web.reactive.function.client.awaitBody
-import org.springframework.web.reactive.function.client.awaitExchange
 import sample.consumerWebClient.models.personData.PersonData
-import sample.consumerWebClient.outgoing.models.Person
+import sample.consumerWebClient.outgoing.producerWebflux.clients.PersonApiClient
 
 @Service
 class PersonDataServiceImpl(
-    builder: WebClient.Builder
+    private val personApiClient: PersonApiClient
 ) : PersonDataService {
-    val webClient: WebClient = builder.baseUrl("http://localhost:8000").build()
-
-    override suspend fun getPersonData(key: Long): PersonData {
-        val spec = webClient.get().uri("/person/$key")
-
-        return spec.awaitExchange {
-            if (it.statusCode().is2xxSuccessful) it.awaitBody<Person>()
-            else throw RuntimeException("invalid statusCode : ${it.statusCode()}")
-        }
-            .toPersonData()
-    }
+    override suspend fun getPersonData(key: Long): PersonData =
+        personApiClient.getPerson(key).toPersonData()
 }
