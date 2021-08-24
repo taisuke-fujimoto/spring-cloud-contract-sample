@@ -13,6 +13,7 @@ abstract class IndexControllerBase {
 
     object MockPersonService : PersonService {
         override fun getPerson(id: Long): Person =
-            Person(1, "mock_name", "mock_surname")
+            if (id == 1L) Person(1, "mock_name", "mock_surname")
+            else throw RuntimeException("invalid id: $id")
     }
 }
