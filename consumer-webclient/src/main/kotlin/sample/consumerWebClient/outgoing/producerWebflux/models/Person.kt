@@ -2,7 +2,7 @@ package sample.consumerWebClient.outgoing.producerWebflux.models
 
 import sample.consumerWebClient.models.personData.PersonData
 
-class Person(
+data class Person(
     val id: Long,
     val name: String,
     val surname: String

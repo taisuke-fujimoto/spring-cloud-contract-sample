@@ -17,7 +17,7 @@ class PersonApiClientImpl(
     override suspend fun getPerson(id: Long): Person {
         val spec = webClient.get().uri("/person/$id")
         return spec.awaitExchange {
-            if (it.statusCode().is2xxSuccessful) it.awaitBody<Person>()
+            if (it.statusCode().is2xxSuccessful) it.awaitBody()
             else throw ProducerWebfluxException("invalid statusCode : ${it.statusCode()}")
         }
     }

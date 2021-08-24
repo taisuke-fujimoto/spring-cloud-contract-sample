@@ -1,13 +1,13 @@
 @file:Suppress("ClassName")
 
-package sample.consumerWebClient.services.personData
+package sample.consumerWebClient.outgoing.producerWebflux.clients
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner
 import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties
-import sample.consumerWebClient.models.personData.PersonData
+import sample.consumerWebClient.outgoing.producerWebflux.models.Person
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @AutoConfigureStubRunner(
@@ -15,16 +15,17 @@ import sample.consumerWebClient.models.personData.PersonData
     ids = ["my.spring-cloud-contract-sample:producer-webflux:0.0.1-SNAPSHOT:stubs:8000"],
     stubsMode = StubRunnerProperties.StubsMode.LOCAL
 )
-class PersonDataService_getPersonData(
-    personDataService: PersonDataService
+class PersonApiClient_getPerson(
+    personApiClient: PersonApiClient
 ) : StringSpec({
-    "存在する key を渡すと成功する" {
-        val keyExists = 1L
-        val expected = PersonData(
-            key = keyExists,
-            fullName = "mock_name mock_surname"
+    "存在する id を渡すと成功する" {
+        val idExists = 1L
+        val expected = Person(
+            id = idExists,
+            name = "mock_name",
+            surname = "mock_surname"
         )
-        val actual = personDataService.getPersonData(keyExists)
+        val actual = personApiClient.getPerson(idExists)
 
         actual shouldBe expected
     }
