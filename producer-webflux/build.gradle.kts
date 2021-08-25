@@ -7,6 +7,7 @@ plugins {
     // apply(plugin = "") 形式だと有効にならなかった
     id("org.springframework.cloud.contract")
 
+    // maven リポジトリに発行する場合、必要
     id("maven-publish")
 }
 
@@ -34,6 +35,11 @@ contracts {
     testFramework.set(TestFramework.JUNIT5)
     testMode.set(TestMode.WEBTESTCLIENT)
 
+    // contracts ファイルと、その自動生成テストコードに継承させるクラスのマッピング
+    //   - key: contracts ファイルのあるディレクトリの正規表現
+    //     - ディレクトリ区切りは `.` とする必要がある
+    //     - contractTest/resources/contracts 配下のパスを指定する
+    //   - value: 継承させるクラスの FQCN
     setBaseClassMappings(
         // 正規表現の指定に Kotlin の """literal""" を使うと generateContractTests でエラー
         mapOf(

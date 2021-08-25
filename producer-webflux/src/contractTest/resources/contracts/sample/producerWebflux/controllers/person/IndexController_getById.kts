@@ -11,7 +11,7 @@ arrayOf(
         response {
             status = OK
             headers {
-                contentType = "application/json"
+                contentType = APPLICATION_JSON
             }
             body = body(
                 "id" to 1,
@@ -29,6 +29,7 @@ arrayOf(
         }
         response {
             status = INTERNAL_SERVER_ERROR
+            body = body("")
         }
     }
 )
