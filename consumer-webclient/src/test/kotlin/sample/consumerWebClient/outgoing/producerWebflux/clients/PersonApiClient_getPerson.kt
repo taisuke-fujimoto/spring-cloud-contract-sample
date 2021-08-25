@@ -16,8 +16,10 @@ import sample.consumerWebClient.outgoing.producerWebflux.models.Person
     // ポート番号は consumer 側 ApiClient 実装の接続先を指定する (producer 側のポートと一致する必要はない)
     ids = ["my.spring-cloud-contract-sample:producer-webflux:0.0.1-SNAPSHOT:stubs:8000"],
 
-    // ローカル maven リポジトリを参照するモード
+    // StubsMode.LOCAL: ローカル maven リポジトリを参照するモード
     // - producer 側で publishToMavenLocal を実行しておく必要がある
+    //
+    // StubsMode.CLASSPATH を試す場合は、 build.gradle の testImplementation(producer 側 jar 指定) コメントアウトを外す
     stubsMode = StubRunnerProperties.StubsMode.LOCAL
 )
 class PersonApiClient_getPerson(

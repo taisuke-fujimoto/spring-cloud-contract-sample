@@ -15,6 +15,9 @@ dependencies {
 
     // spring-boot-starter-test が含まれてる
     testImplementation("org.springframework.cloud:spring-cloud-starter-contract-stub-runner")
+
+    // producer 側 verifierStubsJar で作った jar を持ってきて CLASSPATH に追加する場合 (jar ファイル自体はコミット済)
+    // testImplementation(files("libs/producer-webflux-0.0.1-SNAPSHOT-stubs.jar"))
 }
 
 tasks {
